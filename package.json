@@ -1,0 +1,30 @@
+{
+    "name": "chrip-outsystem-plugin",
+    "version": "0.0.1",
+    "description": "An Android Cordova plugin Chrip.io .",
+    "cordova": {
+      "id": "chrip-outsystem-plugin",
+      "platforms": [
+        "android"
+      ]
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/vviek/chrip-outsystem-plugin.git"
+    },
+    "keywords": [
+      "chrip","cordova","android"
+    ],
+    "engines": [
+      {
+        "name": "cordova",
+        "version": ">=3.0.0"
+      }
+    ],
+    "author": "Vivek Patel<vivek.patel371@gmail.com>",
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/vviek/chrip-outsystem-plugin/issues"
+    },
+    "homepage": "https://github.com/vviek/chrip-outsystem-plugin"
+  }
