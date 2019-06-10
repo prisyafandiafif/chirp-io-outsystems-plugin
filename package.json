@@ -10,7 +10,7 @@
     },
     "repository": {
       "type": "git",
-      "url": "git+https://github.com/vviek/chrip-outsystem-plugin.git"
+      "url": "git+https://github.com/prisyafandiafif/chirp-io-outsystems-plugin.git"
     },
     "keywords": [
       "chrip","cordova","android"
@@ -21,10 +21,10 @@
         "version": ">=3.0.0"
       }
     ],
-    "author": "Vivek Patel<vivek.patel371@gmail.com>",
+    "author": "Fandi Afif<prisyafandiafif.charifa@gmail.com>",
     "license": "MIT",
     "bugs": {
-      "url": "https://github.com/vviek/chrip-outsystem-plugin/issues"
+      "url": "https://github.com/prisyafandiafif/chirp-io-outsystems-plugin/issues"
     },
-    "homepage": "https://github.com/vviek/chrip-outsystem-plugin"
+    "homepage": "https://github.com/prisyafandiafif/chirp-io-outsystems-plugin"
   }

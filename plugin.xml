@@ -8,8 +8,8 @@
     <license>MIT</license>
 
     <keywords>cordova,android,chrip</keywords>
-    <repo>https://github.com/vviek/chrip-outsystem-plugin.git</repo>
-    <issue>https://github.com/vviek/chrip-outsystem-plugin/issues</issue>
+    <repo>https://github.com/prisyafandiafif/chirp-io-outsystems-plugin.git</repo>
+    <issue>https://github.com/prisyafandiafif/chirp-io-outsystems-plugin.git</issue>
     <preference name="CHIRP_APP_KEY" />
     <preference name="CHIRP_APP_SECRET" />
     <preference name="CHIRP_APP_CONFIG" />
