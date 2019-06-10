@@ -92,7 +92,7 @@ public class ChripPlugin extends CordovaPlugin implements ConnectEventListener {
 			ChirpError errorConfig = chirp.setConfig(CHIRP_APP_CONFIG);
 			
 			if (errorConfig.getCode() == 0) {
-				Toast.makeText(cordova.getActivity(), "Register as Receiver succeeded!", Toast.LENGTH_SHORT).show();
+				Toast.makeText(cordova.getActivity(), "Chirp configuration succeeded!", Toast.LENGTH_SHORT).show();
 				/*Log.v("ChirpSDK: ", "Configured ChirpSDK");*/
 			} else {
 				Toast.makeText(cordova.getActivity(), "ErrorConfig "+errorConfig.getMessage(), Toast.LENGTH_SHORT).show();
@@ -117,6 +117,10 @@ public class ChripPlugin extends CordovaPlugin implements ConnectEventListener {
 			}
 
         }
+		else
+		{
+			Toast.makeText(cordova.getActivity(), "Chirp is already running!", Toast.LENGTH_SHORT).show();
+		}
         chirp.setListener(this);
 
     }
@@ -129,18 +133,33 @@ public class ChripPlugin extends CordovaPlugin implements ConnectEventListener {
                 String CHIRP_APP_CONFIG= cordova.getActivity().getString(cordova.getActivity().getResources().getIdentifier( "CHIRP_APP_CONFIG", "string", cordova.getActivity().getPackageName()));
                 chirp = new ChirpConnect(cordova.getActivity(), CHIRP_APP_KEY, CHIRP_APP_SECRET);
                 ChirpError errorConfig = chirp.setConfig(CHIRP_APP_CONFIG);
-                //Toast.makeText(cordova.getActivity(), CHIRP_APP_KEY, Toast.LENGTH_SHORT).show();
-             /*   chirp = new ChirpConnect(cordova.getActivity(), cordova.getActivity().getResources().getString(R.string.CHIRP_APP_KEY), cordova.getActivity().getResources().getString(R.string.CHIRP_APP_SECRET));
-                ChirpError errorConfig = chirp.setConfig(cordova.getActivity().getResources().getString(R.string.CHIRP_APP_CONFIG));
-                */
-				chirp.start(true, true);
-                if (errorConfig.getCode() != 0) {
+				
+				if (errorConfig.getCode() != 0) {
                     JSONObject jsonObject = new JSONObject();
                     jsonObject.put("Code", errorConfig.getCode());
                     jsonObject.put("Message", errorConfig.getMessage());
                     context.error(jsonObject);
+					Toast.makeText(cordova.getActivity(), "ErrorConfig "+errorConfig.getMessage(), Toast.LENGTH_SHORT).show();
                     return;
                 }
+				else
+				{
+					Toast.makeText(cordova.getActivity(), "Chirp configuration succeeded!", Toast.LENGTH_SHORT).show();
+				}
+                //Toast.makeText(cordova.getActivity(), CHIRP_APP_KEY, Toast.LENGTH_SHORT).show();
+             /*   chirp = new ChirpConnect(cordova.getActivity(), cordova.getActivity().getResources().getString(R.string.CHIRP_APP_KEY), cordova.getActivity().getResources().getString(R.string.CHIRP_APP_SECRET));
+                ChirpError errorConfig = chirp.setConfig(cordova.getActivity().getResources().getString(R.string.CHIRP_APP_CONFIG));
+                */
+				ChirpError errorStart = chirp.start(true, true);
+				
+				if (errorStart.getCode() == 0) {
+					Toast.makeText(cordova.getActivity(), "Chirp has been started!", Toast.LENGTH_SHORT).show();
+				/*Log.v("ChirpSDK: ", "Configured ChirpSDK");*/
+				} else {
+					Toast.makeText(cordova.getActivity(), "ErrorStart "+errorStart.getMessage(), Toast.LENGTH_SHORT).show();
+					return;
+					/*Log.e("ChirpError: ", error.getMessage());*/
+				}
             }
             //Toast.makeText(cordova.getActivity(),dataToSend, Toast.LENGTH_SHORT).show();
             byte[] payload = dataToSend.getBytes(Charset.forName("UTF-8"));
