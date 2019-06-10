@@ -119,10 +119,10 @@ public class ChripPlugin extends CordovaPlugin implements ConnectEventListener {
         }
 		else
 		{
-			Toast.makeText(cordova.getActivity(), "Chirp is already running!", Toast.LENGTH_SHORT).show();
+			Toast.makeText(cordova.getActivity(), "Chirp is already running and in receiving mode!", Toast.LENGTH_SHORT).show();
 		}
+		
         chirp.setListener(this);
-
     }
 
     private void sendData() {
@@ -161,6 +161,8 @@ public class ChripPlugin extends CordovaPlugin implements ConnectEventListener {
 					/*Log.e("ChirpError: ", error.getMessage());*/
 				}
             }
+			
+			chirp.setListener(this);
             //Toast.makeText(cordova.getActivity(),dataToSend, Toast.LENGTH_SHORT).show();
             byte[] payload = dataToSend.getBytes(Charset.forName("UTF-8"));
             ChirpError error = chirp.send(payload);
@@ -183,8 +185,7 @@ public class ChripPlugin extends CordovaPlugin implements ConnectEventListener {
             PermissionHelper.requestPermissions(this, 0, permissions);
         }
     }
-
-
+	
     public void onRequestPermissionResult(int requestCode, String[] permissions,
                                           int[] grantResults) throws JSONException {
         PluginResult result;
