@@ -165,10 +165,20 @@ public class ChripPlugin extends CordovaPlugin implements ConnectEventListener {
 			chirp.setListener(this);
             //Toast.makeText(cordova.getActivity(),dataToSend, Toast.LENGTH_SHORT).show();
             byte[] payload = dataToSend.getBytes(Charset.forName("UTF-8"));
-            ChirpError error = chirp.send(payload);
+            ChirpError errorSend = chirp.send(payload);
+			
+			if (errorSend.getCode() == 0) {
+				Toast.makeText(cordova.getActivity(), "Sending "+dataToSend, Toast.LENGTH_SHORT).show();
+			/*Log.v("ChirpSDK: ", "Configured ChirpSDK");*/
+			} else {
+				Toast.makeText(cordova.getActivity(), "ErrorSend "+errorSend.getMessage(), Toast.LENGTH_SHORT).show();
+				return;
+				/*Log.e("ChirpError: ", error.getMessage());*/
+			}
+			
             JSONObject jsonObject = new JSONObject();
-            jsonObject.put("Code", error.getCode());
-            jsonObject.put("Message", error.getMessage());
+            jsonObject.put("Code", errorSend.getCode());
+            jsonObject.put("Message", errorSend.getMessage());
 
             context.success(jsonObject);
         } catch (Exception ex) {
