@@ -35,6 +35,7 @@ public class ChripPlugin extends CordovaPlugin implements ConnectEventListener {
     String[] permissions = {Manifest.permission.RECORD_AUDIO};
     CordovaWebView cordovaWebView;
     String dataToSend;
+    String dataReceived;
 
     @Override
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
@@ -228,6 +229,7 @@ public class ChripPlugin extends CordovaPlugin implements ConnectEventListener {
             @Override
             public void run() {
                 String data=new String(bytes);
+		dataReceived = data;
                 Toast.makeText(cordova.getActivity(),"onReceived "+data, Toast.LENGTH_SHORT).show();
                 cordovaWebView.loadUrl("javascript:Callback('"+data+"','"+i+"');");
             }
