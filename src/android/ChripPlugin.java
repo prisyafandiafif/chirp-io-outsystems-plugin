@@ -27,6 +27,8 @@ public class ChripPlugin extends CordovaPlugin implements ConnectEventListener {
     private static final String STOP_CHIRP = "stop";
     private static final String SEND_DATA = "sendData";
     private static final String REGISTER_AS_RECEIVER = "registerAsReceiver";
+    private static final String GET_DATA_TO_SEND = "getDataToSend";
+    private static final String GET_DATA_RECEIVED = "getDataReceived";
 
     ChirpConnect chirp;
     CallbackContext context;
@@ -56,6 +58,7 @@ public class ChripPlugin extends CordovaPlugin implements ConnectEventListener {
             case SEND_DATA:
                 try {
                     dataToSend = args.getString(0);
+		    dataReceived = "dataReceived Heyyyy";
                     checkPermission();
                 } catch (Exception ex) {
                     callbackContext.error(ex.getMessage());
@@ -67,6 +70,21 @@ public class ChripPlugin extends CordovaPlugin implements ConnectEventListener {
 
                 break;
 
+	    case GET_DATA_TO_SEND:
+                try {
+                    callbackContext.success(dataToSend);
+                } catch (Exception ex) {
+                    callbackContext.error(ex.getMessage());
+                }
+                break;	
+			
+	     case GET_DATA_RECEIVED:
+                try {
+                    callbackContext.success(dataReceived);
+                } catch (Exception ex) {
+                    callbackContext.error(ex.getMessage());
+                }
+                break;			
         }
 
 
