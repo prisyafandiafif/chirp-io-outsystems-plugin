@@ -38,6 +38,7 @@ public class ChripPlugin extends CordovaPlugin implements ConnectEventListener {
     CordovaWebView cordovaWebView;
     String dataToSend;
     String dataReceived;
+    int actionToDo;
 
     @Override
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
@@ -59,6 +60,7 @@ public class ChripPlugin extends CordovaPlugin implements ConnectEventListener {
                 try {
                     dataToSend = args.getString(0);
 		    //dataReceived = "dataReceived Send";
+		    actionToDo = 1;	
                     checkPermission();
                 } catch (Exception ex) {
                     callbackContext.error(ex.getMessage());
@@ -66,8 +68,14 @@ public class ChripPlugin extends CordovaPlugin implements ConnectEventListener {
                 break;
 
             case REGISTER_AS_RECEIVER:
+		try {
+		    actionToDo = 2;
+		    checkPermission();
+		} catch (Exception ex) {
+                    callbackContext.error(ex.getMessage());
+                }
 		//dataReceived = "dataReceived Register";	
-                registerAsReceiver();
+                //registerAsReceiver();
 
                 break;
 
@@ -223,7 +231,15 @@ public class ChripPlugin extends CordovaPlugin implements ConnectEventListener {
     private void checkPermission() {
 
         if (hasPermisssion()) {
-            sendData();
+	    if (actionToDo == 1)
+	    {
+		sendData();
+	    }
+	    else
+  	    if (actionToDo == 2)
+	    {
+	        registerAsReceiver(); 
+	    }
         } else {
             PermissionHelper.requestPermissions(this, 0, permissions);
         }
@@ -242,7 +258,15 @@ public class ChripPlugin extends CordovaPlugin implements ConnectEventListener {
                 }
 
             }
-            sendData();
+            if (actionToDo == 1)
+	    {
+		sendData();
+	    }
+	    else
+  	    if (actionToDo == 2)
+	    {
+	        registerAsReceiver(); 
+	    }
         }
     }
 
