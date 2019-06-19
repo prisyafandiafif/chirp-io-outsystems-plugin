@@ -58,7 +58,7 @@ public class ChripPlugin extends CordovaPlugin implements ConnectEventListener {
             case SEND_DATA:
                 try {
                     dataToSend = args.getString(0);
-		    dataReceived = "dataReceived Send";
+		    //dataReceived = "dataReceived Send";
                     checkPermission();
                 } catch (Exception ex) {
                     callbackContext.error(ex.getMessage());
@@ -66,7 +66,7 @@ public class ChripPlugin extends CordovaPlugin implements ConnectEventListener {
                 break;
 
             case REGISTER_AS_RECEIVER:
-		dataReceived = "dataReceived Register";	
+		//dataReceived = "dataReceived Register";	
                 registerAsReceiver();
 
                 break;
